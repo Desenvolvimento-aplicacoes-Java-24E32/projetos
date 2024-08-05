@@ -1,0 +1,3 @@
+1;coca-cola;false;10;normal;false
+2;hamburger;true;20;bom;true
+3;fritas;false;30;batata;true

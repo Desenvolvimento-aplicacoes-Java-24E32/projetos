@@ -1,0 +1,3 @@
+4;celular;true;40;xpto;15
+5;tv;false;50;xoni;20
+6;radio;true;60;pilha;25
