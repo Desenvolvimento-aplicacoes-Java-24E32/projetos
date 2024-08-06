@@ -3,15 +3,20 @@ package br.edu.infnet.appElberth;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appElberth.model.domain.Alimenticio;
+import br.edu.infnet.appElberth.model.service.AlimenticioService;
 
 @Component
 public class AlimenticioLoader implements ApplicationRunner {
 
+	@Autowired
+	private AlimenticioService alimenticioService;
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
@@ -31,10 +36,14 @@ public class AlimenticioLoader implements ApplicationRunner {
 			alimenticio.setPreco(Float.valueOf(campos[3]));
 			alimenticio.setCaracteristica(campos[4]);
 			alimenticio.setOrganico(Boolean.valueOf(campos[5]));
-			
-			System.out.println("[ALIMENTÍCIO] " + alimenticio);
+
+			alimenticioService.incluir(alimenticio);
 			
 			linha = leitura.readLine();
+		}
+		
+		for(Alimenticio a : alimenticioService.obterLista()) {
+			System.out.println("[ALIMENTÍCIO] " + a);
 		}
 		
 		leitura.close();
