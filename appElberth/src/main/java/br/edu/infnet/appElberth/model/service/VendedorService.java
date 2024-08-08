@@ -23,4 +23,12 @@ public class VendedorService {
 	public Collection<Vendedor> obterLista(){
 		return mapa.values();
 	}
+	
+	public Vendedor obterPorId(Integer id) {
+		return mapa.get(id);
+	}
+	
+	public void excluir(Integer id) {
+		mapa.remove(id);
+	}
 }

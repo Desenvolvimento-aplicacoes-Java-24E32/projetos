@@ -23,4 +23,12 @@ public class EletronicoService {
 	public Collection<Eletronico> obterLista(){
 		return mapa.values();
 	}
+	
+	public Eletronico obterPorId(Integer id) {
+		return mapa.get(id);
+	}
+	
+	public void excluir(Integer id) {
+		mapa.remove(id);
+	}
 }

@@ -1,6 +1,6 @@
 package br.edu.infnet.appElberth.model.domain;
 
-public class Produto {
+public abstract class Produto {
 
 	private Integer id;
 
@@ -8,7 +8,7 @@ public class Produto {
 	private int codigo;
 	private float preco;
 	private boolean estoque;
-	
+
 	@Override
 	public String toString() {
 		return String.format("%d;%s;%d;%.2f;%s",
