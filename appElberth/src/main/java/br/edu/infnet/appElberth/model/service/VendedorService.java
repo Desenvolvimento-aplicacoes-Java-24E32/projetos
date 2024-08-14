@@ -1,34 +1,37 @@
 package br.edu.infnet.appElberth.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appElberth.model.domain.Vendedor;
+import br.edu.infnet.appElberth.model.repository.VendedorRepository;
 
 @Service
 public class VendedorService {
-
-	private Map<Integer, Vendedor> mapa = new HashMap<Integer, Vendedor>();
-	private Integer id = 0;			
+	
+	@Autowired
+	private VendedorRepository vendedorRepository;
 	
 	public void incluir(Vendedor vendedor) {
-		vendedor.setId(++id);
-		
-		mapa.put(vendedor.getId(), vendedor);
+		vendedorRepository.save(vendedor);
 	}
 	
-	public Collection<Vendedor> obterLista(){
-		return mapa.values();
+	public Iterable<Vendedor> obterLista(){
+		
+		return vendedorRepository.findAll();
 	}
 	
 	public Vendedor obterPorId(Integer id) {
-		return mapa.get(id);
+		return vendedorRepository.findById(id).orElse(null);
 	}
 	
 	public void excluir(Integer id) {
-		mapa.remove(id);
+		vendedorRepository.deleteById(id);
+	}
+
+	public long obterQtde() {
+		return vendedorRepository.count();
 	}
 }

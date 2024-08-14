@@ -31,4 +31,8 @@ public class EletronicoService {
 	public void excluir(Integer id) {
 		mapa.remove(id);
 	}
+
+	public int obterQtde() {
+		return mapa.size();
+	}
 }
