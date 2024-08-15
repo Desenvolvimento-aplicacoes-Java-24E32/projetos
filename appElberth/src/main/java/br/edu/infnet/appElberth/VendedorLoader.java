@@ -6,6 +6,7 @@ import java.io.FileReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appElberth.model.domain.Alimenticio;
@@ -14,6 +15,7 @@ import br.edu.infnet.appElberth.model.domain.Vendedor;
 import br.edu.infnet.appElberth.model.service.VendedorService;
 
 @Component
+@Order(1)
 public class VendedorLoader implements ApplicationRunner {
 
 	@Autowired

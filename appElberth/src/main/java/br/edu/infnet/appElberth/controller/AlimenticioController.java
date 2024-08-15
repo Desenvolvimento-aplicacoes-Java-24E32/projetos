@@ -1,7 +1,5 @@
 package br.edu.infnet.appElberth.controller;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +18,7 @@ public class AlimenticioController {
 	private AlimenticioService alimenticioService;
 	
 	@GetMapping(value = "alimenticio/listar")
-	public Collection<Alimenticio> obterLista(){
+	public Iterable<Alimenticio> obterLista(){
 		return alimenticioService.obterLista();
 	}
 	

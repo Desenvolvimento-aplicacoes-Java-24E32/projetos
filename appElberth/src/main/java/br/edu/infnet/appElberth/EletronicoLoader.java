@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appElberth.model.domain.Eletronico;
+import br.edu.infnet.appElberth.model.domain.Vendedor;
 import br.edu.infnet.appElberth.model.service.EletronicoService;
 
 @Component
@@ -29,6 +30,9 @@ public class EletronicoLoader implements ApplicationRunner {
 		while(linha != null) {
 			campos = linha.split(";");
 			
+			Vendedor vendedor = new Vendedor();
+			vendedor.setId(Integer.valueOf(campos[6]));			
+			
 			Eletronico eletronico = new Eletronico();
 			eletronico.setCodigo(Integer.valueOf(campos[0]));
 			eletronico.setDescricao(campos[1]);
@@ -36,7 +40,9 @@ public class EletronicoLoader implements ApplicationRunner {
 			eletronico.setPreco(Float.valueOf(campos[3]));
 			eletronico.setMarca(campos[4]);
 			eletronico.setGarantiaMeses(Integer.valueOf(campos[5]));
-
+			
+			eletronico.setVendedor(vendedor);
+			
 			eletronicoService.incluir(eletronico);
 			
 			linha = leitura.readLine();

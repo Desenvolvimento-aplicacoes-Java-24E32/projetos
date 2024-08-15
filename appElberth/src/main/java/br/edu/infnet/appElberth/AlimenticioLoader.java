@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appElberth.model.domain.Alimenticio;
+import br.edu.infnet.appElberth.model.domain.Vendedor;
 import br.edu.infnet.appElberth.model.service.AlimenticioService;
 
 @Component
@@ -29,6 +30,9 @@ public class AlimenticioLoader implements ApplicationRunner {
 		while(linha != null) {
 			campos = linha.split(";");
 			
+			Vendedor vendedor = new Vendedor();
+			vendedor.setId(Integer.valueOf(campos[6]));			
+			
 			Alimenticio alimenticio = new Alimenticio();
 			alimenticio.setCodigo(Integer.valueOf(campos[0]));
 			alimenticio.setDescricao(campos[1]);
@@ -36,6 +40,7 @@ public class AlimenticioLoader implements ApplicationRunner {
 			alimenticio.setPreco(Float.valueOf(campos[3]));
 			alimenticio.setCaracteristica(campos[4]);
 			alimenticio.setOrganico(Boolean.valueOf(campos[5]));
+			alimenticio.setVendedor(vendedor);
 
 			alimenticioService.incluir(alimenticio);
 			
