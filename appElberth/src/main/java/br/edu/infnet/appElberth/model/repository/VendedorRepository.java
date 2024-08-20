@@ -7,5 +7,5 @@ import br.edu.infnet.appElberth.model.domain.Vendedor;
 
 @Repository
 public interface VendedorRepository extends CrudRepository<Vendedor, Integer> {
-
+	Vendedor findByCpf(String cpf);
 }

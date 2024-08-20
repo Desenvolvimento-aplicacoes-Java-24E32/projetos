@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appElberth.model.domain.Alimenticio;
 import br.edu.infnet.appElberth.model.domain.Eletronico;
+import br.edu.infnet.appElberth.model.domain.Endereco;
 import br.edu.infnet.appElberth.model.domain.Vendedor;
 import br.edu.infnet.appElberth.model.service.VendedorService;
 
@@ -38,10 +39,20 @@ public class VendedorLoader implements ApplicationRunner {
 
 			switch (campos[0].toUpperCase()) {
 			case "V":
+				
+				Endereco endereco = new Endereco();
+				endereco.setCep(campos[4]);
+				endereco.setLogradouro(campos[5]);
+				endereco.setComplemento(campos[6]);
+				endereco.setBairro(campos[7]);
+				endereco.setLocalidade(campos[8]);
+				endereco.setUf(campos[9]);
+				
 				vendedor = new Vendedor();
 				vendedor.setCpf(campos[1]);
 				vendedor.setEmail(campos[2]);
 				vendedor.setNome(campos[3]);
+				vendedor.setEndereco(endereco);
 				
 				vendedorService.incluir(vendedor);
 				
@@ -83,6 +94,10 @@ public class VendedorLoader implements ApplicationRunner {
 		for(Vendedor v : vendedorService.obterLista()) {
 			System.out.println("[VENDEDOR] " + v);			
 		}
+		
+		String cpf = "123123123123";
+		Vendedor v1 = vendedorService.obterPorCpf(cpf);
+		System.err.println("[VENDEDOR] " + v1);
 		
 		leitura.close();
 	}

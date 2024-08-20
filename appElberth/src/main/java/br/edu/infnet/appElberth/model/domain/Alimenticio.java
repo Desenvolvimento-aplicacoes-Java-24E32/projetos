@@ -2,12 +2,14 @@ package br.edu.infnet.appElberth.model.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "TAlimenticio")
 public class Alimenticio extends Produto {
 
 	private boolean organico;
+	@Size(min = 3, max = 10, message = "É necessário que o campo CARACTERISTICA tenha entre 3 e 10.")
 	private String caracteristica;
 	
 	@Override

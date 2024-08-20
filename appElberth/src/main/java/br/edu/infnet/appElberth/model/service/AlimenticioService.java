@@ -13,7 +13,11 @@ public class AlimenticioService {
 	private AlimenticioRepository alimenticioRepository;
 
 	public void incluir(Alimenticio alimenticio) {
-		alimenticioRepository.save(alimenticio);
+		try {
+			alimenticioRepository.save(alimenticio);
+		} catch (Exception e) {
+			System.err.println("[ERROR] " + e.getMessage());
+		}
 	}
 	
 	public Iterable<Alimenticio> obterLista(){

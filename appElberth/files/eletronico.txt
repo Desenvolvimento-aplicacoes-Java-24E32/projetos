@@ -2,3 +2,4 @@
 6;tv;false;50;xoni;20;3
 7;radio;true;60;pilha;25;2
 8;fone;false;70;digital;16;1
+9;meu fone;false;70;digital;16;1

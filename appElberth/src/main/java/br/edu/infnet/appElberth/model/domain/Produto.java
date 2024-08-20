@@ -1,5 +1,6 @@
 package br.edu.infnet.appElberth.model.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "TProduto")
@@ -19,8 +22,13 @@ public abstract class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotBlank(message = "É necessário o preenchimento do campo DESCRICAO.")
 	private String descricao;
+	
+	@Column(unique = true)
 	private int codigo;
+	
+	@Min(value = 5, message = "O PREÇO do produto precisa ser maior ou igual a 5.")
 	private float preco;
 	private boolean estoque;
 

@@ -13,7 +13,11 @@ public class VendedorService {
 	private VendedorRepository vendedorRepository;
 	
 	public void incluir(Vendedor vendedor) {
-		vendedorRepository.save(vendedor);
+		try {
+			vendedorRepository.save(vendedor);
+		} catch (Exception e) {
+			System.err.println("[ERROR] " + e.getMessage());
+		}
 	}
 	
 	public Iterable<Vendedor> obterLista(){
@@ -31,5 +35,9 @@ public class VendedorService {
 
 	public long obterQtde() {
 		return vendedorRepository.count();
+	}
+
+	public Vendedor obterPorCpf(String cpf) {
+		return vendedorRepository.findByCpf(cpf);
 	}
 }
