@@ -44,7 +44,7 @@ public class Vendedor {
 
 	@Override
 	public String toString() {
-		return id + ";" + nome + ";" + cpf + ";" + email + ";" + produtos.size();
+		return id + ";" + nome + ";" + cpf + ";" + email + ";" + produtos.size() + "; cep: " + endereco.getCep();
 	}
 
 	public Integer getId() {

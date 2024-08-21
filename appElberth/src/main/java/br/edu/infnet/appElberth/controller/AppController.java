@@ -55,7 +55,7 @@ public class AppController {
 	public String listarAlimenticio(Model model) {
 
 		model.addAttribute("titulo", "Listagem de alimentícios");
-		model.addAttribute("listagem", alimenticioService.obterLista());
+		model.addAttribute("listagem", alimenticioService.obterLista("caracteristica"));
 		
 		return telaHome(model);
 	}

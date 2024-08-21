@@ -1,5 +1,7 @@
 package br.edu.infnet.appElberth.model.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,9 @@ public class EletronicoService {
 
 	public long obterQtde() {
 		return eletronicoRepository.count();
+	}
+	
+	public Collection<Eletronico> obterPorMarca(String marca){
+		return eletronicoRepository.findByMarcaContaining(marca);
 	}
 }

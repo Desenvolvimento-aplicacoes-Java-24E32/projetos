@@ -1,6 +1,9 @@
 package br.edu.infnet.appElberth.model.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appElberth.model.domain.Alimenticio;
@@ -23,6 +26,10 @@ public class AlimenticioService {
 	public Iterable<Alimenticio> obterLista(){
 		return alimenticioRepository.findAll();
 	}
+
+	public Iterable<Alimenticio> obterLista(String orderBy){
+		return alimenticioRepository.findAll(Sort.by(Sort.Direction.ASC, orderBy));
+	}
 	
 	public Alimenticio obterPorId(Integer id) {
 		return alimenticioRepository.findById(id).orElse(null);
@@ -36,4 +43,7 @@ public class AlimenticioService {
 		return alimenticioRepository.count();
 	}
 	
+	public Collection<Alimenticio> obterOrganico(boolean organico){
+		return alimenticioRepository.findByOrganico(organico);
+	}
 }

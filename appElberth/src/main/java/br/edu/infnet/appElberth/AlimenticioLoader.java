@@ -50,6 +50,16 @@ public class AlimenticioLoader implements ApplicationRunner {
 		for(Alimenticio a : alimenticioService.obterLista()) {
 			System.out.println("[ALIMENTÍCIO] " + a);
 		}
+
+		boolean[] tiposAlimentos = {true, false};
+		
+		for(boolean tipo : tiposAlimentos) {
+			for(Alimenticio a : alimenticioService.obterOrganico(tipo)) {
+				System.out.println("[ALIMENTÍCIO] " + (tipo ? "sim - " : "não - ") + a);
+			}
+			
+		}
+
 		
 		leitura.close();
 	}

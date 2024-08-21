@@ -9,14 +9,19 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appElberth.model.domain.Eletronico;
+import br.edu.infnet.appElberth.model.domain.Produto;
 import br.edu.infnet.appElberth.model.domain.Vendedor;
 import br.edu.infnet.appElberth.model.service.EletronicoService;
+import br.edu.infnet.appElberth.model.service.ProdutoService;
 
 @Component
 public class EletronicoLoader implements ApplicationRunner {
 	
 	@Autowired
 	private EletronicoService eletronicoService;
+	
+	@Autowired
+	private ProdutoService produtoService;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -52,6 +57,23 @@ public class EletronicoLoader implements ApplicationRunner {
 			System.out.println("[ELETRÔNICO] " + e);
 		}
 		
+		String marca = "pilha";
+		for(Eletronico e : eletronicoService.obterPorMarca(marca)) {			
+			System.out.printf("[ELETRÔNICO - %s] %s \n", marca, e);
+		}
+		
+		Integer id = 1;
+		for(Produto p : produtoService.obterListaPorVendedor(id)) {
+			System.out.println("[PRODUTO por ID] " + p);
+		}
+		
+		Vendedor vendedor = new Vendedor();
+		vendedor.setId(2);			
+		
+		for(Produto p : produtoService.obterListaPorVendedor(vendedor)) {
+			System.out.println("[PRODUTO por OBJ] " + p);
+		}
+
 		leitura.close();
 	}
 }
